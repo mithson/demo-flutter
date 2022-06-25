@@ -62,38 +62,41 @@ class _MyListScreenState extends State<MyListScreen> {
             const SizedBox(
               height: 50,
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              height: 40,
-              width: 230,
-              decoration: BoxDecoration(
-                  gradient:
-                      LinearGradient(colors: [Colors.black, Colors.black]),
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.blue),
-              child: Center(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: MaterialButton(
-                    height: 50,
-                    minWidth: double.infinity,
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          backgroundColor: Colors.black87,
-                          width: MediaQuery.of(context).size.width - 80,
-                          behavior: SnackBarBehavior.floating,
-                          content: Text(
-                            "Successful Payment",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          )));
-                    },
-                    child: Text(
-                      "Total Payment: $total",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+            Visibility(
+              visible: total != 0,
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                height: 40,
+                width: 230,
+                decoration: BoxDecoration(
+                    gradient:
+                        LinearGradient(colors: [Colors.black, Colors.black]),
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.blue),
+                child: Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: MaterialButton(
+                      height: 50,
+                      minWidth: double.infinity,
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            backgroundColor: Colors.black87,
+                            width: MediaQuery.of(context).size.width - 80,
+                            behavior: SnackBarBehavior.floating,
+                            content: Text(
+                              "Successful Payment",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )));
+                      },
+                      child: Text(
+                        "Total Payment: $total",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
