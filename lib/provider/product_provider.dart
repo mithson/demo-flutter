@@ -2,35 +2,35 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import '../model/product.dart';
 
-// A list of movies
-final List<Movie> initialData = List.generate(
-    50,
-    (index) => Movie(
-        title: "Moview $index",
-        runtime: "${Random().nextInt(100) + 60} minutes"));
+// A list of products
+final List<Product> initialData = List.generate(
+    20,
+    (index) =>
+        Product(title: "Product ${index + 1}", price: Random().nextInt(100)));
 
-class MovieProvider with ChangeNotifier {
-  // All movies (that will be displayed on the Home screen)
-  final List<Movie> _movies = initialData;
-  
-  // Retrieve all movies
-  List<Movie> get movies => _movies;
+class ProductProvider with ChangeNotifier {
+  // All products (that will be displayed on the Home screen)
+  final List<Product> _products = initialData;
 
-  // Favorite movies (that will be shown on the MyList screen)
-  final List<Movie> _myList = [];
+  // Retrieve all products
+  List<Product> get products => _products;
 
-  // Retrieve favorite movies
-  List<Movie> get myList => _myList;
+  // Favorite products (that will be shown on the MyList screen)
+  final List<Product> _myList = [];
 
-  // Adding a movie to the favorites list
-  void addToList(Movie movie) {
-    _myList.add(movie);
+  // Retrieve favorite products
+  List<Product> get myList => _myList;
+
+  // Adding a product to the favorites list
+  void addToList(Product product) {
+    _myList.add(product);
+
     notifyListeners();
   }
 
-  // Removing a movie from the favorites list
-  void removeFromList(Movie movie) {
-    _myList.remove(movie);
+  // Removing a product from the favorites list
+  void removeFromList(Product product) {
+    _myList.remove(product);
     notifyListeners();
   }
 }

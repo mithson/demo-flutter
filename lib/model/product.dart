@@ -1,6 +1,11 @@
-class Movie {
-  final String title;
-  final String? runtime; // how long this movie is (in minute)
+int? total = 0;
 
-  Movie({required this.title, this.runtime});
+class Product {
+  final String? title;
+  int? price;
+
+  Product({
+    this.title,
+    this.price,
+  });
 }

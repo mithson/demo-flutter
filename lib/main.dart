@@ -6,9 +6,9 @@ import 'provider/product_provider.dart';
 import 'screens/home_screen.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider<MovieProvider>(
+  runApp(ChangeNotifierProvider<ProductProvider>(
     child: const MyApp(),
-    create: (_) => MovieProvider(), // Create a new ChangeNotifier object
+    create: (_) => ProductProvider(), // Create a new ChangeNotifier object
   ));
 }
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Demo App',
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.blue,
       ),
       home: const HomeScreen(),
     );
