@@ -39,11 +39,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Stack(
                     children: <Widget>[
                       IconButton(
+                        iconSize: 30,
                         icon: Icon(
                           Icons.shopping_cart_outlined,
                           color: Colors.white,
                         ),
-                        onPressed: null,
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  MyListScreen()));
+                        },
                       ),
                       myList.length == 0
                           ? Container()
@@ -51,16 +56,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Stack(
                               children: <Widget>[
                                 Icon(Icons.brightness_1,
-                                    size: 20.0, color: Colors.black),
+                                    size: 25.0, color: Colors.white),
                                 Positioned(
-                                    top: 3.0,
-                                    right: 7.0,
+                                    top: 5.0,
+                                    right: 5.5,
                                     child: Center(
                                       child: Text(
                                         myList.length.toString(),
                                         style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 11.0,
+                                            color: Colors.black,
+                                            fontSize: 13.0,
                                             fontWeight: FontWeight.w500),
                                       ),
                                     )),
@@ -77,28 +82,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton.icon(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const MyListScreen(),
-                  ),
-                );
-              },
-              icon: const Icon(Icons.list_alt_rounded),
-              label: Text(
-                "View Cart items (${myList.length})",
-                style: const TextStyle(fontSize: 24),
-              ),
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  padding: const EdgeInsets.symmetric(vertical: 20)),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
             Expanded(
               child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
                   itemCount: products.length,
                   itemBuilder: (_, index) {
                     final currentProduct = products[index];
@@ -113,8 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: Text(currentProduct.title!,
                             style: TextStyle(
                               color: myList.contains(currentProduct)
-                                  ? Colors.black
-                                  : Colors.white,
+                                  ? Colors.white
+                                  : Colors.black,
                             )),
                         subtitle: Text(
                           'Rs. ${currentPrice.toString()}',
@@ -125,13 +111,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         trailing: IconButton(
-                          icon: Icon(
-                            Icons.add_circle_outline_rounded,
-                            color: myList.contains(currentProduct)
-                                ? Colors.black
-                                : Colors.white,
-                            size: 30,
-                          ),
+                          icon: myList.contains(currentProduct)
+                              ? Icon(
+                                  Icons.remove_circle_outline_rounded,
+                                  color: Colors.red,
+                                  size: 30,
+                                )
+                              : Icon(
+                                  Icons.add_circle_outline_rounded,
+                                  color: Colors.black,
+                                  size: 30,
+                                ),
                           onPressed: () {
                             if (!myList.contains(currentProduct)) {
                               context

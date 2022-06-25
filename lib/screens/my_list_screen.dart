@@ -20,13 +20,16 @@ class _MyListScreenState extends State<MyListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Cart Items"),
+        title: Text("My Cart "),
       ),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
-          child: Column(children: [
+          physics: BouncingScrollPhysics(),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             ListView.builder(
+                physics: BouncingScrollPhysics(),
                 // scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: _myList.length,
@@ -45,7 +48,7 @@ class _MyListScreenState extends State<MyListScreen> {
                         'Rs. ${currentPrice.toString()}',
                       ),
                       trailing: OutlinedButton(
-                        child: Icon(Icons.delete, color: Colors.black),
+                        child: Icon(Icons.delete, color: Colors.red),
                         onPressed: () {
                           context
                               .read<ProductProvider>()
@@ -79,8 +82,11 @@ class _MyListScreenState extends State<MyListScreen> {
                           backgroundColor: Colors.black87,
                           width: MediaQuery.of(context).size.width - 80,
                           behavior: SnackBarBehavior.floating,
-                          content: Text("successful payment",
-                              textAlign: TextAlign.center)));
+                          content: Text(
+                            "Successful Payment",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )));
                     },
                     child: Text(
                       "Total Payment: $total",
@@ -93,9 +99,10 @@ class _MyListScreenState extends State<MyListScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 100,
+            SizedBox(
+              height: 150,
             ),
+            
           ]),
         ),
       ),
