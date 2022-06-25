@@ -102,7 +102,6 @@ class _MyListScreenState extends State<MyListScreen> {
             SizedBox(
               height: 150,
             ),
-            
           ]),
         ),
       ),
